@@ -12,26 +12,13 @@ class MVP_MatchTests: XCTestCase {
     
     private let movieService = MovieService()
     var homeviewModel = HomeViewModel()
+    var persistManager = MoviePersistenceManager.shared
     
-    func test_searchMovies() {
-        let movies = homeviewModel.getSearchedMovies(with: "king")
+    func test_PersistantMovies() {
+        let movies = persistManager.fetch()
         XCTAssertNotNil(movies)
-        XCTAssertNil(movies)
     }
 
-    //
-    func test_favourites() {
-        let movies = homeviewModel.getFavouriteMovies()
-        XCTAssertNotNil(movies)
-        XCTAssertNil(movies)
-    }
-    
-    func test_hiddenMovies() {
-        let movies = homeviewModel.getHiddenMovies()
-        XCTAssertNotNil(movies)
-        XCTAssertNil(movies)
-    }
-    
     func test_searchMoviesApi() {
         let expectation = XCTestExpectation.init(description: "Search Movies")
         
